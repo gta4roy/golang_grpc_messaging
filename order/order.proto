@@ -1,0 +1,33 @@
+syntax = "proto3";
+package order;
+
+message PurchaseOrder {
+    string productid = 1;
+    string productname = 2;
+    double cost = 3;
+    int32 quantity = 4;
+}
+
+message TotalCost {
+    double totalcost = 1;
+}
+
+message AllPurchase{
+    repeated PurchaseOrder orders = 1;
+}
+
+message SearchValue {
+    string value = 1;
+}
+
+message ResponseMessage{
+    string value = 1;
+}
+
+message EmptyParams{}
+
+service PurchaseOrderService {
+    rpc Search(SearchValue) returns (PurchaseOrder) {}
+    rpc Add(PurchaseOrder) returns (ResponseMessage) {}
+    rpc ListAll(EmptyParams) returns (AllPurchase) {}
+}
